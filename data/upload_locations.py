@@ -2,11 +2,12 @@ import json
 import pandas as pd
 import pymongo
 import os
-from pathlib import Path
+
+
+current_dir = os.path.dirname(__file__)
 
 
 def load_df() -> pd.DataFrame:
-    current_dir = os.path.dirname(__file__)
     path = os.path.join(current_dir, "locations.csv")
     df = pd.read_csv(
         filepath_or_buffer = path,
@@ -34,27 +35,25 @@ def convert_to_geojson(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def get_mongo() -> str:
-    data_dir = Path(__file__).resolve().parent
-    project_dir = str(data_dir.parent)
-    path = os.path.join(project_dir, "config.json")
+def get_mongo() -> tuple[str, str]:
+    dir = os.path.dirname(current_dir)
+    path = os.path.join(dir, "config.json")
     with open(path, "r") as config_file:
         config = json.load(config_file)
     db_name = config["database"]
     uri = f"mongodb+srv://{config['username']}:{config['password']}@{config['cluster']}.{config['id']}.mongodb.net/{db_name}?retryWrites=true&w=majority"
-    print(uri)
     return uri, db_name
 
 
 def upload_df(df: pd.DataFrame, uri: str, db_name: str) -> None:
-    print("Started uploading data")
+    print("Started uploading")
     client = pymongo.MongoClient(uri)
     db = client[db_name]
     collection = db["locations"]
     records = df.to_dict("records")
     collection.insert_many(records)
     client.close()
-    print("Finished uploading data")
+    print("Finished uploading")
     return
 
 
