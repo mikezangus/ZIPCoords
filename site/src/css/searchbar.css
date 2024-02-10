@@ -1,0 +1,16 @@
+.search-bar {
+    margin: 20px;
+    outline: none;
+    width: 50%;
+  }
+  
+  .search-bar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 40px;
+    border: none;
+    padding-left: 20px;
+  }
+  
