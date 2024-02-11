@@ -1,0 +1,36 @@
+.header {
+    box-sizing: border-box;
+    display: flex;
+    padding: 25px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: var(--color-white);
+    /* background-color: red; */
+}
+
+.header .title {
+    font-weight: bold;
+    font-size: var(--font-size-large);
+}
+
+.header .title a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.header .links {
+    display: flex;
+    font-size: var(--font-size-extra-small)
+}
+
+.header .links a {
+    margin-left: auto;
+    margin-right: 20px;
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.header .links a:last-child {
+    margin-right: 0;
+}

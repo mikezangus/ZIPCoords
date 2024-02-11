@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import "../../css/searchbar.css"
+import fetchResult from "./fetchResult";
+import "../css/search.css"
 
 
-export default function SearchBar({ onSearch }) {
+export default function Search({ handleResult }) {
 
     const [input, setInput] = useState("");
 
     const handleChange = (event) => {
-        const value = event.target.value
-        setInput(value);
-        const inputType = determineInputType(value);
-        console.log(inputType)
-        if (onSearch) {
-            onSearch(value, inputType)
+        const input = event.target.value;
+        setInput(input);
+        console.log("input", input)
+        if (input) {
+            const inputType = determineInputType(input);
+            console.log("input type", inputType, "input", input)
+            if (inputType !== "UNKNOWN") {
+                fetchResult(input, inputType, handleResult);
+            }
         }
     };
 
@@ -32,11 +36,10 @@ export default function SearchBar({ onSearch }) {
         <div className="search-bar">
             <input
                 type="text"
-                placeholder="🔎 Type a ZIP code or set of coordinates"
+                placeholder="🔎  Type a ZIP code or set of coordinates"
                 value={input}
                 onChange={handleChange}
             />
         </div>
-    )
-
-}
+    );
+};
