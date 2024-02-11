@@ -7,31 +7,21 @@ import "./css/index.css";
 
 export default function App() {
 
-
     const [output, setOutput] = useState(null);
     const [outputType, setOutputType] = useState(null);
 
-
     const handleResult = (inputType, { rawOutput }) => {
-
         const outputExists = rawOutput[0];
         if (!outputExists) {
-            console.log("No data returned");
             return
         }
-
         let outputType;
-        if (inputType === "ZIP") {
-            outputType = "COORDS";
-        }
-        else if (inputType === "COORDS") {
-            outputType = "ZIP";
-
-        }
-
+        (inputType === "ZIP" 
+            ? outputType = "COORDS"
+            : outputType = "ZIP"
+        );
         setOutput(rawOutput);
         setOutputType(outputType);
-        console.log("APP RESULT:", "OUTPUT: ", rawOutput, "OUTPUT TYPE: ", outputType)
     };
 
     return (

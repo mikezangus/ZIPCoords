@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import fetchResult from "./fetchResult";
+import determineType from "./determineType"
 import "../css/search.css"
 
 
@@ -12,23 +13,11 @@ export default function Search({ handleResult }) {
         setInput(input);
         console.log("input", input)
         if (input) {
-            const inputType = determineInputType(input);
+            const inputType = determineType(input);
             console.log("input type", inputType, "input", input)
             if (inputType !== "UNKNOWN") {
                 fetchResult(input, inputType, handleResult);
             }
-        }
-    };
-
-    const determineInputType = (input) => {
-        const zipRegex = /^\d{5}(-\d{4})?$/;
-        const coordRegex = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/;
-        if (zipRegex.test(input)) {
-            return "ZIP"
-        } else if (coordRegex.test(input)) {
-            return "COORDS"
-        } else {
-            return "UNKNOWN"
         }
     };
 

@@ -12,7 +12,7 @@ export default function Header() {
             </div>
             <div className="links">
                 <a
-                    href="https://zipcoords.co/about"
+                    href="https://github.com/mikezangus/ZIPCoords"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

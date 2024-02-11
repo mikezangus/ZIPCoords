@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getDB } = require("./mongoClient");
+const { getDB } = require("../mongoClient");
 
 
 module.exports = router.get("/", async (req, res) => {
@@ -21,8 +21,7 @@ module.exports = router.get("/", async (req, res) => {
         else if (lat && lon) {
             lat = parseFloat(lat);
             lon = parseFloat(lon);
-            console.log(lat, lon)
-            pipeline.push({
+            query = {
                 $geoNear: {
                     near: {
                         type: "Point",
@@ -31,7 +30,8 @@ module.exports = router.get("/", async (req, res) => {
                     distanceField: "distance",
                     spherical: true
                 }
-            });
+            }
+            pipeline.push(query);
         }
         else {
             return res.status(400).send("ZIP code or coordinates are required");
@@ -44,7 +44,7 @@ module.exports = router.get("/", async (req, res) => {
             lon: { $arrayElemAt: ["$COORDS.coordinates", 0] }
         };
 
-        pipeline.push({ $project: projection });
+        pipeline.push({ $project: projection}, { $limit: 1 });
 
         const data = await collection.aggregate(pipeline).toArray();
         res.json(data);
