@@ -2,10 +2,18 @@ const express = require("express");
 const cors = require("cors");
 const { connectToMongo } = require("./mongoClient");
 const createIndex = require("./createIndex");
-const route = require("./route");
+const clientRoute = require("./routes/clientRoute");
+const apiRoute = require("./routes/apiRoute");
+
 
 const app = express();
 const PORT = 4001;
+
+
+function loadRoutes() {
+    app.use("/client", clientRoute);
+    app.use("/api", apiRoute);
+}
 
 
 async function startServer() {
@@ -13,7 +21,7 @@ async function startServer() {
     try {
         await connectToMongo();
         await createIndex();
-        app.use("/route", route);
+        loadRoutes();
         app.listen(PORT, () => {
             console.log(`Server is running on http://localhost:${PORT}`);
         });
