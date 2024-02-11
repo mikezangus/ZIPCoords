@@ -16,11 +16,11 @@ def load_df() -> pd.DataFrame:
     return df
 
 
-def convert_to_geojson(df: pd.DataFrame) -> pd.DataFrame:
+def format_coords(df: pd.DataFrame) -> pd.DataFrame:
     df["COORDS"] = df.apply(
         lambda row: {
             "type": "Point",
-            "COORDS": [
+            "coordinates": [
                 row["LON"],
                 row["LAT"]
             ]
@@ -59,7 +59,7 @@ def upload_df(df: pd.DataFrame, uri: str, db_name: str) -> None:
 
 def main():
     df = load_df()
-    df = convert_to_geojson(df)
+    df = format_coords(df)
     uri, db_name = get_mongo()
     upload_df(df, uri, db_name)
 
