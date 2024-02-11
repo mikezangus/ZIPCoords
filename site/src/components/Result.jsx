@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/result.css"
+import "../css/copy.css"
 
 
 
 export default function Result({ output, outputType }) {
-    console.log("OUTPUT FROM RESULT", output)
+
     const { zip, lat, lon } = output[0];
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+    };
 
     return (
         <div className="result">
             {outputType === "ZIP"
                 ? (
                     <div>
-                        <div>ZIP Code for Coordinates {lat}, {lon}</div>
-                        {zip}
+                        <span>ZIP Code: </span>
+                        <span
+                            onClick={() => copyToClipboard(`${zip}`)}
+                            style={{cursor: "pointer"}}
+                            title="Click to copy"
+                        >
+                            {zip}
+                        </span>
                     </div>
-                ) : (
+                )
+                : (
                     <div>
-                        <div>Coordinates for ZIP Code {zip}</div>
-                        {lat}, {lon}
+                        <span>Coordinates: </span>
+                        <br></br>
+                        <span
+                            onClick={() => copyToClipboard(`${lat}, ${lon}`)}
+                            style={{cursor: "pointer"}}
+                            title="Click to copy"
+                        >
+                            {lat}, {lon}
+                        </span>
                     </div>
                 )
             }
-
         </div>
     );
 
-}
+};
