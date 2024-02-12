@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import "../css/result.css"
-import "../css/copy.css"
-
+import React from "react";
+import "../css/result.css";
 
 
 export default function Result({ output, outputType }) {

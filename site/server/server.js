@@ -3,7 +3,6 @@ const cors = require("cors");
 const { connectToMongo } = require("./mongoClient");
 const createIndex = require("./createIndex");
 const clientRoute = require("./routes/clientRoute");
-const apiRoute = require("./routes/apiRoute");
 
 
 const app = express();
@@ -12,7 +11,6 @@ const PORT = 4001;
 
 function loadRoutes() {
     app.use("/client", clientRoute);
-    app.use("/api", apiRoute);
 }
 
 

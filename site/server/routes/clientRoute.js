@@ -13,7 +13,6 @@ module.exports = router.get("/", async (req, res) => {
         let query = {};
         let pipeline = [];
 
-
         if (zip) {
             query = { ZIP: zip };
             pipeline.push({ $match: query });

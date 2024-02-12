@@ -11,10 +11,8 @@ export default function Search({ handleResult }) {
     const handleChange = (event) => {
         const input = event.target.value;
         setInput(input);
-        console.log("input", input)
         if (input) {
             const inputType = determineType(input);
-            console.log("input type", inputType, "input", input)
             if (inputType !== "UNKNOWN") {
                 fetchResult(input, inputType, handleResult);
             }
