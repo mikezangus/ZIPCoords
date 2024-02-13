@@ -1,17 +1,16 @@
-const express = require("express");
-const router = express.Router();
-const { getDB } = require("../mongoClient");
+import { connectToMongo } from "../../lib/mongoClient";
 
 
-module.exports = router.get("/", async (req, res) => {
+export default async function handler(req, res) {
+
+    const {zip, lat, lon } = req.query;
+    let query = {};
+    let pipeline = [];
 
     try {
 
-        const db = getDB();
+        const db = await connectToMongo();
         const collection = db.collection("locations");
-        let { zip, lat, lon } = req.query;
-        let query = {};
-        let pipeline = [];
 
         if (zip) {
             query = { ZIP: zip };
@@ -50,10 +49,12 @@ module.exports = router.get("/", async (req, res) => {
         console.log("Data:", data);
 
     } catch (err) {
-
         console.error("Error", err);
-        res.status(500).send("Internal Server Error");
+        res
+            .status(500)
+            .json(
+                { error: "Internal server error" }
+            )
+    }
 
-    };
-
-});
+}
