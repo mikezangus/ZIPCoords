@@ -1,16 +1,16 @@
 import React from "react";
-import "../css/header.css";
+import styles from "../css/Header.module.css";
 
 
 export default function Header() {
     return (
-        <div className="header">
-            <div className="title">
+        <div className={styles.header}>
+            <div className={styles.title}>
                 <a href="https://zipcoords.co">
                     ZIPCoords
                 </a>
             </div>
-            <div className="links">
+            <div className={styles.links}>
                 <a
                     href="https://github.com/mikezangus/ZIPCoords"
                     target="_blank"

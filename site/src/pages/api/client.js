@@ -1,9 +1,9 @@
-import { connectToMongo } from "../../lib/mongoClient";
+import connectToMongo from "../../lib/mongoClient";
 
 
 export default async function handler(req, res) {
 
-    const {zip, lat, lon } = req.query;
+    let { zip, lat, lon } = req.query;
     let query = {};
     let pipeline = [];
 
@@ -32,7 +32,9 @@ export default async function handler(req, res) {
             pipeline.push(query);
         }
         else {
-            return res.status(400).send("ZIP code or coordinates are required");
+            return res
+                .status(400)
+                .send("ZIP code or coordinates are required");
         }
 
         const projection = {
@@ -44,17 +46,23 @@ export default async function handler(req, res) {
 
         pipeline.push({ $project: projection}, { $limit: 1 });
 
-        const data = await collection.aggregate(pipeline).toArray();
-        res.json(data);
+        const data = await collection
+            .aggregate(pipeline)
+            .toArray();
+        res
+            .status(200)
+            .json(data);
         console.log("Data:", data);
 
     } catch (err) {
         console.error("Error", err);
-        res
-            .status(500)
-            .json(
-                { error: "Internal server error" }
-            )
+        if (!res.headersSent) {
+            res
+                .status(500)
+                .json(
+                    { error: "Internal server error" }
+                )
+        }
     }
 
-}
+};

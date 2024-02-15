@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import fetchResult from "./fetchResult";
 import determineType from "./determineType"
-import "../css/search.css"
+import styles from "../css/Search.module.css";
 
 
 export default function Search({ handleResult }) {
@@ -20,7 +20,7 @@ export default function Search({ handleResult }) {
     };
 
     return (
-        <div className="search-bar">
+        <div className={styles.searchBar}>
             <input
                 type="text"
                 placeholder="🔎  Type a ZIP code or set of coordinates"

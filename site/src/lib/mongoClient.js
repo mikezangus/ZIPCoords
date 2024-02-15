@@ -1,7 +1,8 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
-const dbName = process.env.DB_NAME;
+
+const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.${process.env.ID}.mongodb.net/?retryWrites=true&w=majority`;
+const dbName = process.env.DATABASE;
 let cachedDB = null;
 
 
@@ -10,10 +11,7 @@ export default async function connectToMongo() {
         return cachedDB;
     }
     try {
-        const client = new MongoClient(uri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        const client = new MongoClient(uri);
         await client.connect();
         cachedDB = client.db(dbName);
         return cachedDB;

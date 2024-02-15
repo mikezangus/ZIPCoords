@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/result.css";
+import styles from "../css/Result.module.css";
 
 
 export default function Result({ output, outputType }) {
@@ -11,7 +11,7 @@ export default function Result({ output, outputType }) {
     };
 
     return (
-        <div className="result">
+        <div className={styles.result}>
             {outputType === "ZIP"
                 ? (
                     <div>
