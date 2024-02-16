@@ -7,8 +7,7 @@ export default async function handler(req, res) {
     let { zip, lat, lon } = req.query;
     let query = {};
     let pipeline = [];
-
-    console.log("Entering endpoint")
+    
 
     try {
 
@@ -67,4 +66,5 @@ export default async function handler(req, res) {
         }
     }
 
+    
 };
