@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     try {
 
         const db = await connectToMongo();
-        const collection = db.collection(process.env.collection);
+        const collection = db.collection(process.env.COLLECTION);
 
         if (zip) {
             query = { ZIP: zip };
