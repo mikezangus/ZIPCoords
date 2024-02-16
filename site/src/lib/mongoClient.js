@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 
-const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.${process.env.ID}.mongodb.net/?retryWrites=true&w=majority`;
+const uri = process.env.URI;
 const dbName = process.env.DATABASE;
 let cachedDB = null;
 
