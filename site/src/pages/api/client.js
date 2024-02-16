@@ -8,6 +8,8 @@ export default async function handler(req, res) {
     let query = {};
     let pipeline = [];
 
+    console.log("Entering endpoint")
+
     try {
 
         const db = await connectToMongo();
