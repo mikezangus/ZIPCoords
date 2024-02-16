@@ -33,3 +33,10 @@
 .header .links a:last-child {
     margin-right: 0;
 }
+
+
+@media (max-width: 768px) {
+    .header .title {
+        font-size: var(--font-size-small);
+    }
+}

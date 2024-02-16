@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div className={styles.header}>
             <div className={styles.title}>
-                <a href="https://zipcoords.co">
+                <a href="https://zangus.co">
                     ZIPCoords
                 </a>
             </div>

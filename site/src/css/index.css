@@ -9,7 +9,7 @@
     --font-size-large: 26px;
     --font-size-medium: 23px;
     --font-size-small: 20px;
-    --font-size-extra-small: 16px;
+    --font-size-extra-small: 14px;
     --radius: 40px;
 }
 
@@ -30,4 +30,13 @@ main {
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 25px;
+}
+
+
+@media (max-width: 768px) {
+    main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 20px;
+    }
 }

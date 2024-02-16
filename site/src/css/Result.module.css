@@ -11,3 +11,13 @@
     padding-left: 40px;
     align-items: center;
 }
+
+@media (max-width: 768px) {
+
+    .result {
+        width: 100%;
+        font-size: var(--font-size-extra-small);
+        height: 50px;
+        padding-left: 20px;
+    }
+}
