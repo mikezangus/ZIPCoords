@@ -55,12 +55,12 @@ export default async function handler(req, res) {
             .json(data);
 
     } catch (err) {
-        console.error("Error", err);
+        console.error("Error stack:", err.stack);
         if (!res.headersSent) {
             res
                 .status(500)
                 .json(
-                    { error: "Internal server error" }
+                    { error: err.message }
                 )
         }
     }
