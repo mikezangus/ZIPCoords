@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../css/Result.module.css";
+import styles from "../styles/Result.module.css";
 
 
 export default function Result({ output, outputType }) {

@@ -10,9 +10,7 @@ export default function Home() {
 
     const handleResult = (inputType, { rawOutput }) => {
         const outputExists = rawOutput[0];
-        if (!outputExists) {
-            return
-        }
+        if (!outputExists) return;
         let outputType;
         (inputType === "ZIP" 
             ? outputType = "COORDS"
@@ -24,17 +22,15 @@ export default function Home() {
 
     return (
         <>
-    
-          <Search
-              handleResult={handleResult}
-          />
-
-          {output && outputType && (
-              <Result
-                  output={output}
-                  outputType={outputType}
-              />
-          )}
+        <Search
+            handleResult={handleResult}
+        />
+        {output && outputType && (
+            <Result
+                output={output}
+                outputType={outputType}
+            />
+        )}
 
         </>
     );

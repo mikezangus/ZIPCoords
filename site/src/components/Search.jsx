@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import fetchResult from "./fetchResult";
 import determineType from "./determineType"
-import styles from "../css/Search.module.css";
+import styles from "../styles/Search.module.css";
 
 
 export default function Search({ handleResult }) {

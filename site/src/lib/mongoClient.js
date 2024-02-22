@@ -20,5 +20,4 @@ export default async function connectToMongo() {
         console.error("Failed to connect to database", error);
         throw new Error("Failed to connect to database");
     }
-
-}
+};
