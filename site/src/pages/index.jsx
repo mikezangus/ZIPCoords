@@ -21,10 +21,13 @@ export default function Home() {
     };
 
     return (
+
         <>
+
         <Search
             handleResult={handleResult}
         />
+
         {output && outputType && (
             <Result
                 output={output}
@@ -33,6 +36,7 @@ export default function Home() {
         )}
 
         </>
+        
     );
     
 };
