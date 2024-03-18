@@ -4,14 +4,17 @@ import pymongo
 import os
 
 
-current_dir = os.path.dirname(__file__)
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_df() -> pd.DataFrame:
-    path = os.path.join(current_dir, "locations.csv")
+    path = os.path.join(
+        CURRENT_DIR,
+        "locations.csv"
+    )
     df = pd.read_csv(
         filepath_or_buffer = path,
-        dtype = {"ZIP": str}
+        dtype = { "ZIP": str }
     )
     return df
 
@@ -36,16 +39,22 @@ def format_coords(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_mongo() -> tuple[str, str]:
-    dir = os.path.dirname(current_dir)
-    path = os.path.join(dir, "config.json")
+    path = os.path.join(
+        CURRENT_DIR,
+        "config.json"
+    )
     with open(path, "r") as config_file:
         config = json.load(config_file)
-    db_name = config["database"]
-    uri = f"mongodb+srv://{config['username']}:{config['password']}@{config['cluster']}.{config['id']}.mongodb.net/{db_name}?retryWrites=true&w=majority"
+    uri = config["uri"]
+    db_name = config["db"]
     return uri, db_name
 
 
-def upload_df(df: pd.DataFrame, uri: str, db_name: str) -> None:
+def upload_df(
+    df: pd.DataFrame,
+    uri: str,
+    db_name: str
+) -> None:
     print("Started uploading")
     client = pymongo.MongoClient(uri)
     db = client[db_name]
