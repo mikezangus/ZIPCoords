@@ -3,11 +3,9 @@ import connectToMongo from "../../lib/mongoClient";
 
 export default async function handler(req, res) {
 
-
     let { zip, lat, lon } = req.query;
     let query = {};
     let pipeline = [];
-    
 
     try {
 
@@ -30,7 +28,7 @@ export default async function handler(req, res) {
                     distanceField: "distance",
                     spherical: true
                 }
-            }
+            };
             pipeline.push(query);
         }
         else {
@@ -65,6 +63,5 @@ export default async function handler(req, res) {
                 )
         }
     }
-
     
 };

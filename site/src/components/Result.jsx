@@ -1,45 +1,53 @@
 import React from "react";
-import styles from "../styles/Result.module.css";
+import styles from "../styles/Field.module.css";
+
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+};
+
+
+function PrintResult({ output, outputType }) {
+    const { zip, lat, lon } = output[0];
+    let resultTypeStr
+    let resultStr
+    outputType === "ZIP"
+        ? (
+            resultTypeStr = "ZIP Code",
+            resultStr = zip
+        )
+        : (
+            resultTypeStr = "Coordinates",
+            resultStr = `${lat}, ${lon}`
+        )
+    return (
+        <>
+            <div style={{ fontWeight: "bold" }}>
+                {resultTypeStr}
+            </div>
+            <div
+                onClick={() => copyToClipboard(resultStr)}
+                style={{cursor: "pointer"}}
+                title="Click to copy"
+            >
+                {resultStr}
+            </div>
+        </>
+    );
+};
 
 
 export default function Result({ output, outputType }) {
-
-    const { zip, lat, lon } = output[0];
-
-    const copyToClipboard = (text) => {
-        navigator.clipboard.writeText(text);
-    };
-
     return (
-        <div className={styles.result}>
-            {outputType === "ZIP"
-                ? (
-                    <div>
-                        <span>ZIP Code: </span>
-                        <span
-                            onClick={() => copyToClipboard(`${zip}`)}
-                            style={{cursor: "pointer"}}
-                            title="Click to copy"
-                        >
-                            {zip}
-                        </span>
-                    </div>
-                )
-                : (
-                    <div>
-                        <span>Coordinates: </span>
-                        <br></br>
-                        <span
-                            onClick={() => copyToClipboard(`${lat}, ${lon}`)}
-                            style={{cursor: "pointer"}}
-                            title="Click to copy"
-                        >
-                            {lat}, {lon}
-                        </span>
-                    </div>
-                )
-            }
+        <div className={styles.fieldContainer}>
+            <div className={styles.fieldBox}>
+                <div className={styles.fieldText}>
+                    <PrintResult
+                        output={output}
+                        outputType={outputType}
+                    />
+                </div>
+            </div>
         </div>
     );
-
 };
