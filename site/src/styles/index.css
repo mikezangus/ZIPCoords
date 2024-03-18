@@ -1,16 +1,17 @@
 :root {
     --color-white: #ffffff;
-    --color-offwhite: #cccccc;
+    --color-offwhite: #ececec;
     --color-gray: #414141;
-    --color-darkgray: #151515;
+    --color-darkgray: #202020;
+    --color-darkgray-transparent: rgb(21, 21, 21, 0.95);
     --color-black: #000000;
     --transition-duration: 0.3s;
-    --font-size-huge: 60px;
+    --font-size-huge: 50px;
     --font-size-large: 26px;
     --font-size-medium: 23px;
     --font-size-small: 20px;
-    --font-size-extra-small: 14px;
-    --radius: 40px;
+    --font-size-extra-small: 16px;
+    --shadow: 0px 0px 30px var(--color-black);
 }
 
 body {
@@ -25,18 +26,30 @@ body {
 main {
     display: flex;
     flex-direction: column;
+    gap: calc(10% + 50px);
+    width: 100%vh;
+    margin-top: calc(10% + 50px);
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     align-items: center;
-    justify-content: space-between;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 25px;
 }
 
 
-@media (max-width: 768px) {
-    main {
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-top: 20px;
+@media (max-width: 820px) {
+
+    :root {
+        --font-size-huge: 40px;
+        --font-size-large: 20px;
+        --font-size-medium: 18px;
+        --font-size-small: 16px;
+        --font-size-extra-small: 14px;
+        --shadow: 0px 0px 15px var(--color-black);
     }
+
+    main {
+        margin-top: calc(8% + 75px);
+        gap: 25px;
+    }
+
 }
