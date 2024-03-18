@@ -1,16 +1,23 @@
+import convertCoordsToDD from "./convertCoordsToDD";
+
+
 export default function determineType(input) {
-
     const zipRegex = /^\d{5}(-\d{4})?$/;
-    const coordRegex = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/;
-
     if (zipRegex.test(input)) {
-        return "ZIP"
+        return {
+            type: "ZIP",
+            value: input
+        };
     }
-    else if (coordRegex.test(input)) {
-        return "COORDS"
+    const convertedCoords = convertCoordsToDD(input);
+    if (convertedCoords) {
+        return {
+            type: "COORDS",
+            value: convertedCoords.join(",")
+        };
     }
-    else {
-        return "UNKNOWN"
-    }
-
+    return {
+        type: "UNKNOWN",
+        value: null
+    };
 };
