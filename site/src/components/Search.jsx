@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import fetchResult from "./fetchResult";
-import determineType from "./determineType"
 import styles from "../styles/Field.module.css";
 
 

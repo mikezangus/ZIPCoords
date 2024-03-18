@@ -11,15 +11,13 @@ function PrintResult({ output, outputType }) {
     const { zip, lat, lon } = output[0];
     let resultTypeStr
     let resultStr
-    outputType === "ZIP"
-        ? (
-            resultTypeStr = "ZIP Code",
-            resultStr = zip
-        )
-        : (
-            resultTypeStr = "Coordinates",
-            resultStr = `${lat}, ${lon}`
-        )
+    if (outputType === "ZIP") {
+        resultTypeStr = "ZIP Code";
+        resultStr = zip;
+    } else {
+        resultTypeStr = "Coordinates"
+        resultStr = `${lat}, ${lon}`;
+    }
     return (
         <>
             <div style={{ fontWeight: "bold" }}>
