@@ -28,7 +28,7 @@ main {
     flex-direction: column;
     gap: calc(10% + 50px);
     width: 100%vh;
-    margin-top: calc(10% + 50px);
+    margin-top: calc(10% + 100px);
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
@@ -48,7 +48,6 @@ main {
     }
 
     main {
-        margin-top: calc(8% + 75px);
         gap: 25px;
     }
 
